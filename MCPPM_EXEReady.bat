@@ -15,6 +15,7 @@ REM BFCPEVERDESC=Minecraft Plugin Project Manager
 REM BFCPEVERCOMPANY=S Universal Group
 REM BFCPEVERCOPYRIGHT=Protected under GNU GPL 3.0
 REM BFCPEOPTIONEND
+@ECHO ON
 @echo off
 goto :welcome
 
@@ -186,24 +187,56 @@ set /p plocation=
 if %plocation%==cancel goto :welcome
 
 :writeinf
+rem GetPercent 1 12
+echo Progress done: %result%
+echo Creating pack.mcmeta...
 echo { "pack": { "pack_format": %packformat%, "description": "%pkgdesc%" } } > pack.mcmeta
+rem GetPercent 2 12
+echo Progress done: %result%
+echo Creating data folder...
 mkdir data
 cd data
+rem GetPercent 3 12
+echo Progress done: %result%
+echo Creating Namespace folder...
 mkdir %mcpns%
 cd %mcpns%
+rem GetPercent 4 12
+echo Progress done: %result%
+echo Creating functions folder...
 mkdir functions
 cd functions
+rem GetPercent 5 12
+echo Progress done: %result%
+echo Creating tick.mcfunction...
 echo. 2>tick.mcfunction
+rem GetPercent 6 12
+echo Progress done: %result%
+echo Creating load.mcfunction...
 echo tellraw @a {"text": "%mcpns% has been loaded."} > load.mcfunction
 cd ..
 cd ..
+rem GetPercent 7 12
+echo Progress done: %result%
+echo Creating minecraft folder...
 mkdir minecraft
 cd minecraft
+rem GetPercent 8 12
+echo Progress done: %result%
+echo Creating tags folder...
 mkdir tags
 cd tags
+rem GetPercent 9 12
+echo Progress done: %result%
+echo Creating functions folder...
 mkdir functions
 cd functions
+rem GetPercent 10 12
+echo Progress done: %result%
 echo { "values": ["%mcpns%:load"] } > load.json
+rem GetPercent 11 12
+echo Progress done: %result%
+echo Creating tick.mcfunction...
 echo { "values": ["%mcpns%:tick"] } > tick.json
 echo Successfully create project.
 pause
